@@ -1,0 +1,64 @@
+GET http://localhost:3003/api/blogs
+Authorization: Bearer 
+###
+
+GET http://localhost:3003/api/blogs/676756fec0a87bddf1605f76
+
+###
+
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: Bearer 
+
+{
+  "title": "Fourth blog of Holyrus",
+  "author": "Holyrus",
+  "url": "https://examplelink.edu",
+  "likes": 2027
+}
+
+###
+
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: Bearer 
+
+{
+  "title": "Blog Vero",
+  "author": "Veronika",
+  "url": "https://examplelink.edu",
+  "likes": 123
+}
+
+###
+DELETE http://localhost:3003/api/blogs/67788ec78804f7fa03b26fdc
+Authorization: Bearer 
+
+###
+
+PUT http://localhost:3003/api/blogs/67730654803ecfa39b90ad4e
+Content-Type: application/json
+Authorization: Bearer 
+
+{
+  "title": "Firts blog of Holyrus",
+  "author": "Holyrus",
+  "url": "https://examplelink.edu",
+  "likes": 2026
+}
+
+###
+
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+  "username": "Veronika",
+  "name": "Vero",
+  "password": "Umka1234"
+}
+
+###
+
+DELETE http://localhost:3003/api/users/6778874f3c800b4f8bb00130
+###
