@@ -32,12 +32,13 @@ loginRouter.post("/", async (request, response) => {
   const token = jwt.sign(
     userForToken,
     process.env.SECRET,
+    // { expiresIn: 5 },
     { expiresIn: 60 * 60 }, // Token expires in one hour (This will force the user to re-login to the app)
   );
 
   response
     .status(200)
-    .send({ token, username: user.username, name: user.name });
+    .send({ token, username: user.username, name: user.name, id: user._id });
 });
 
 module.exports = loginRouter;

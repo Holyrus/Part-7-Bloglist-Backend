@@ -53,12 +53,14 @@ POST http://localhost:3003/api/users
 Content-Type: application/json
 
 {
-  "username": "Veronika",
+  "username": "Renardjojo",
   "name": "Vero",
   "password": "Umka1234"
 }
 
 ###
 
-DELETE http://localhost:3003/api/users/6778874f3c800b4f8bb00130
+DELETE http://localhost:3003/api/users/678aa66a5d5f79acb7fc1320
 ###
+
+GET http://localhost:3003/api/users
