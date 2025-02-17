@@ -1,6 +1,7 @@
 const blogRouter = require("express").Router();
 const Blog = require("../models/blog");
 const User = require("../models/user");
+const Comment = require("../models/comment")
 const jwt = require("jsonwebtoken");
 const middleware = require("../utils/middleware");
 
@@ -112,6 +113,52 @@ blogRouter.delete(
     }
   },
 );
+
+blogRouter.post(
+  "/:id/comments",
+  middleware.userExtractor,
+  async (request, response) => {
+    const body = request.body
+    const decodedToken = jwt.verify(request.token, process.env.SECRET);
+
+    if (!decodedToken.id) {
+      return response.status(401).json({ error: "Token invalid" });
+    }
+
+    const user = await User.findById(decodedToken.id)
+    const blog = await Blog.findById(request.params.id)
+
+    if (!blog) {
+      return response.status(404).json({ error: "Blog not found" })
+    }
+
+    const comment = new Comment({
+      content: body.content,
+      user: user._id,
+      blog: blog._id
+    })
+
+    const savedComment = await comment.save()
+    blog.comments = blog.comments.concat(savedComment._id)
+    await blog.save()
+
+    response.status(201).json(savedComment)
+  })
+
+blogRouter.get(
+  "/:id/comments",
+  async (request, response) => {
+    const blog = await Blog.findById(request.params.id).populate({
+      path: 'comments',
+      populate: { path: 'user', select: 'username' }
+    })
+
+    if (!blog) {
+      return response.status(404).json({ error: "Blog not found" })
+    }
+
+    response.json(blog.comments)
+  })
 
 // -------------------------------
 

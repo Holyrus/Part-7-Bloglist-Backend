@@ -64,3 +64,13 @@ DELETE http://localhost:3003/api/users/678aa66a5d5f79acb7fc1320
 ###
 
 GET http://localhost:3003/api/users
+
+###
+
+POST http://localhost:3003/api/blogs/67b13d5709ae5c4e3ee1585d/comments
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkhvbHlydXMiLCJpZCI6IjY3YWMxYmE2NDE2OTdmYzAyZjBjYWU0ZSIsImlhdCI6MTczOTgzMzk2NCwiZXhwIjoxNzM5ODM3NTY0fQ.PVcuWSs_hKgOxd1WlLlLttumkcyAyXHrZ3K1OX8HBIA
+
+{
+  "content": "New comment ;)"
+}
